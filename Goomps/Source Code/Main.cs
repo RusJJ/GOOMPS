@@ -33,7 +33,7 @@ namespace GOOMPS
         }
         void Start()
         {
-            m_bCanUpdateConfig = false;
+            m_bCanUpdateConfig = true;
             enabled = m_hCfgEnabled.Value;
         }
         void OnDisable()
