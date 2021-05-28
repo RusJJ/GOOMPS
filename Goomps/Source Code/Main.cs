@@ -6,12 +6,13 @@ using UnityEngine;
 namespace GOOMPS
 {
     /* That's me! */
-    [BepInPlugin("redbrumbler.rusjj.goomps", "GetOutOfMyPersonalSpace", "1.0.1")]
+    [BepInPlugin("redbrumbler.rusjj.goomps", "GetOutOfMyPersonalSpace", "1.0.2")]
 
     public class GOOMPS : BaseUnityPlugin
     {
         internal static ConfigEntry<bool> m_hCfgEnabled;
         internal static ConfigEntry<float> m_hCfgRadius;
+        internal static bool m_bCanUpdateConfig = false;
         private static GOOMPS m_hInstance;
         internal static void Log(string msg) => m_hInstance.Logger.LogMessage(msg);
         void Awake()
@@ -19,6 +20,7 @@ namespace GOOMPS
             var hCfgFile = new ConfigFile(Path.Combine(Paths.ConfigPath, "GOOMPS.cfg"), true);
             m_hCfgEnabled = hCfgFile.Bind("CFG", "Enabled", true, "Is it enabled?");
             m_hCfgRadius = hCfgFile.Bind("CFG", "Radius", 0.25f, "Radius in.. meters?");
+
             if (m_hCfgRadius.Value < 0.01f) m_hCfgRadius.Value = 0.01f;
             else if (m_hCfgRadius.Value > 5.0f) m_hCfgRadius.Value = 5.0f;
 
@@ -27,11 +29,20 @@ namespace GOOMPS
         }
         void OnEnable()
         {
-            m_hCfgEnabled.Value = true;
+            if (m_bCanUpdateConfig) m_hCfgEnabled.Value = true;
+        }
+        void Start()
+        {
+            m_bCanUpdateConfig = false;
+            enabled = m_hCfgEnabled.Value;
         }
         void OnDisable()
         {
-            m_hCfgEnabled.Value = false;
+            if(m_bCanUpdateConfig) m_hCfgEnabled.Value = false;
+        }
+        void OnApplicationQuit()
+        {
+            m_bCanUpdateConfig = false;
         }
         public static void SetRadius(float radius)
         {
@@ -39,9 +50,7 @@ namespace GOOMPS
             else if (radius > 5.0f) m_hCfgRadius.Value = 5.0f;
             else m_hCfgRadius.Value = radius;
 
-            HideCollidingRigs hider = Object.FindObjectOfType<HideCollidingRigs>();
-            SphereCollider collider = hider.GetComponent<SphereCollider>();
-            collider.radius = m_hCfgRadius.Value;
+            FindObjectOfType<HideCollidingRigs>().GetComponent<SphereCollider>().radius = m_hCfgRadius.Value;
         }
     }
 }

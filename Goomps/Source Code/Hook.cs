@@ -11,11 +11,9 @@ namespace GOOMPS
         private static void Postfix(GorillaLocomotion.Player __instance)
         {
             GameObject hObj = new GameObject();
-            SphereCollider hCol = hObj.AddComponent<SphereCollider>();
-            TransformFollow hFollow = hObj.AddComponent<TransformFollow>();
-            //Transform hTransform = hObj.transform;
+            hObj.AddComponent<SphereCollider>();
+            hObj.AddComponent<TransformFollow>().transformToFollow = __instance.bodyCollider.transform;
             hObj.AddComponent<HideCollidingRigs>();
-            hFollow.transformToFollow = __instance.bodyCollider.transform;
         }
     }
 
