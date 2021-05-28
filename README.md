@@ -1,5 +1,5 @@
 # What is this mod?
-Just a PC-port of GOOMPS by RedBrumbler.
+Just a PC-port of GOOMPS by RedBrumbler. [Quest version.](https://github.com/RedBrumbler/GOOMPS)
 
 GetOutOfMyPersonalSpace (GOOMPS) is a mod that will make monkeys that get too close be invisible, forcing them to respect your personal space!
 
