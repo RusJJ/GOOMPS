@@ -30,6 +30,7 @@ namespace GOOMPS
         }
         void OnTriggerEnter(Collider hCol)
         {
+            if (!GOOMPS.m_hCfgEnabled.Value) return;
             if (hCol.gameObject.name.Contains("Body"))
             {
                 VRRig rig = hCol.transform.parent.parent.parent.gameObject.GetComponent<VRRig>();
