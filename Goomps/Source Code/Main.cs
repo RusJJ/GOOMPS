@@ -15,6 +15,22 @@ namespace GOOMPS
         internal static bool m_bCanUpdateConfig = false;
         private static GOOMPS m_hInstance;
         internal static void Log(string msg) => m_hInstance.Logger.LogMessage(msg);
+        /* Wrist Buttons Part Start */
+        // Do not create a variable of type WristButton! It will fail on load!
+        // Create it as an object then use it as a WristButton! (!!!)
+        internal static object __toggle_me_btn = null;
+        private void OnReadyForButtons() // WristButtons?
+        {
+            __toggle_me_btn = WristButtons.WristButton.CreateButton("__toggle_goomps", "Toggle GOOMPS", WristButtons.WristButton.ButtonType.Toggleable);
+            ((WristButtons.WristButton)__toggle_me_btn).actionToggled = OnBtnToggled;
+            if (enabled) ((WristButtons.WristButton)__toggle_me_btn).ToggleOn();
+        }
+        private void OnBtnToggled(WristButtons.WristButton b, bool enabled) // WristButtons?
+        {
+            this.enabled = enabled;
+            m_hCfgEnabled.Value = enabled;
+        }
+        /* Wrist Buttons Part End */
         void Awake()
         {
             var hCfgFile = new ConfigFile(Path.Combine(Paths.ConfigPath, "GOOMPS.cfg"), true);

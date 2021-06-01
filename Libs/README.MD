@@ -13,3 +13,5 @@ UnityEngine.CoreModule.dll
 UnityEngine.dll
 
 UnityEngine.PhysicsModule.dll
+
+WristButtons.dll
