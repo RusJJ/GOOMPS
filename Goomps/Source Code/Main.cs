@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GOOMPS
 {
     /* That's me! */
-    [BepInPlugin("redbrumbler.rusjj.goomps", "GetOutOfMyPersonalSpace", "1.0.2")]
+    [BepInPlugin("redbrumbler.rusjj.goomps", "GetOutOfMyPersonalSpace", "1.0.3")]
 
     public class GOOMPS : BaseUnityPlugin
     {
@@ -15,6 +15,7 @@ namespace GOOMPS
         internal static ConfigEntry<float> m_hCfgRadius;
         internal static bool m_bCanUpdateConfig = false;
         private static GOOMPS m_hInstance;
+        internal static SphereCollider m_hCol;
         internal static void Log(string msg) => m_hInstance.Logger.LogMessage(msg);
         /* Wrist Buttons Part Start */
         // Do not create a variable of type WristButton! It will fail on load!
@@ -77,7 +78,7 @@ namespace GOOMPS
             else if (radius > 5.0f) m_hCfgRadius.Value = 5.0f;
             else m_hCfgRadius.Value = Convert.ToSingle(Math.Round(Convert.ToDouble(radius), 2, MidpointRounding.ToEven));
 
-            FindObjectOfType<HideCollidingRigs>().GetComponent<SphereCollider>().radius = m_hCfgRadius.Value;
+            m_hCol.radius = m_hCfgRadius.Value;
         }
     }
 }

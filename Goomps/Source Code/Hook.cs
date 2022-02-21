@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using Photon.Pun;
 using UnityEngine;
 
 namespace GOOMPS
@@ -11,7 +10,7 @@ namespace GOOMPS
         private static void Postfix(GorillaLocomotion.Player __instance)
         {
             GameObject hObj = new GameObject();
-            hObj.AddComponent<SphereCollider>();
+            GOOMPS.m_hCol = hObj.AddComponent<SphereCollider>();
             hObj.AddComponent<TransformFollow>().transformToFollow = __instance.bodyCollider.transform;
             hObj.AddComponent<HideCollidingRigs>();
         }
@@ -21,10 +20,9 @@ namespace GOOMPS
     {
         void Awake()
         {
-            SphereCollider hCol = GetComponent<SphereCollider>();
-            hCol.isTrigger = true;
-            hCol.radius = GOOMPS.m_hCfgRadius.Value;
-            gameObject.layer = 20;
+            GOOMPS.m_hCol.isTrigger = true;
+            GOOMPS.m_hCol.radius = GOOMPS.m_hCfgRadius.Value;
+            gameObject.layer = 31;
         }
         void OnTriggerEnter(Collider hCol)
         {
