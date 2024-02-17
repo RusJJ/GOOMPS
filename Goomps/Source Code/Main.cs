@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GOOMPS
 {
     /* That's me! */
-    [BepInPlugin("redbrumbler.rusjj.goomps", "GetOutOfMyPersonalSpace", "1.0.3")]
+    [BepInPlugin("redbrumbler.rusjj.goomps", "GetOutOfMyPersonalSpace", "1.1")]
 
     public class GOOMPS : BaseUnityPlugin
     {
