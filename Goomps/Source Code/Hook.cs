@@ -30,7 +30,7 @@ namespace GOOMPS
             if (hCol.gameObject.name.Contains("Body"))
             {
                 VRRig rig = hCol.transform.parent.parent.parent.gameObject.GetComponent<VRRig>();
-                if (rig && !rig.photonView.IsMine)
+                if (rig && !rig.isMyPlayer)
                 {
                     rig.mainSkin.enabled = false;
                 }
@@ -41,7 +41,7 @@ namespace GOOMPS
             if (hCol.gameObject.name.Contains("Body"))
             {
                 VRRig rig = hCol.transform.parent.parent.parent.gameObject.GetComponent<VRRig>();
-                if (rig && !rig.photonView.IsMine)
+                if (rig && !rig.isMyPlayer)
                 {
                     rig.mainSkin.enabled = true;
                 }

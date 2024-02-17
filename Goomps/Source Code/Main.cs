@@ -22,26 +22,26 @@ namespace GOOMPS
         // Create it as an object then use it as a WristButton! (!!!)
         internal static object __toggle_me_btn = null;
         internal static object __radius_btn = null;
-        private void OnReadyForButtons() // WristButtons?
-        {
-            __toggle_me_btn = WristButtons.WristButton.CreateButton("__toggle_goomps", "Toggle GOOMPS", WristButtons.WristButton.ButtonType.Toggleable);
-            ((WristButtons.WristButton)__toggle_me_btn).actionToggled = OnBtnToggled;
-            if (enabled) ((WristButtons.WristButton)__toggle_me_btn).ToggleOn();
-            __radius_btn = WristButtons.WristButton.CreateButton("__radius_btn", "GOOMPS Radius:\n" + m_hCfgRadius.Value, WristButtons.WristButton.ButtonType.Switchable);
-            ((WristButtons.WristButton)__radius_btn).actionSwitched = OnRadiusChange;
-            ((WristButtons.WristButton)__radius_btn).SmallerFont();
-        }
-        private void OnBtnToggled(WristButtons.WristButton b, bool enabled) // WristButtons?
-        {
-            this.enabled = enabled;
-            m_hCfgEnabled.Value = enabled;
-        }
-        private void OnRadiusChange(WristButtons.WristButton b, bool left) // WristButtons?
-        {
-            if(left) SetRadius(m_hCfgRadius.Value - 0.05f);
-            else SetRadius(m_hCfgRadius.Value + 0.05f);
-            b.SetText("GOOMPS Radius:\n" + m_hCfgRadius.Value);
-        }
+        //private void OnReadyForButtons() // WristButtons?
+        //{
+        //    __toggle_me_btn = WristButtons.WristButton.CreateButton("__toggle_goomps", "Toggle GOOMPS", WristButtons.WristButton.ButtonType.Toggleable);
+        //    ((WristButtons.WristButton)__toggle_me_btn).actionToggled = OnBtnToggled;
+        //    if (enabled) ((WristButtons.WristButton)__toggle_me_btn).ToggleOn();
+        //    __radius_btn = WristButtons.WristButton.CreateButton("__radius_btn", "GOOMPS Radius:\n" + m_hCfgRadius.Value, WristButtons.WristButton.ButtonType.Switchable);
+        //    ((WristButtons.WristButton)__radius_btn).actionSwitched = OnRadiusChange;
+        //    ((WristButtons.WristButton)__radius_btn).SmallerFont();
+        //}
+        //private void OnBtnToggled(WristButtons.WristButton b, bool enabled) // WristButtons?
+        //{
+        //    this.enabled = enabled;
+        //    m_hCfgEnabled.Value = enabled;
+        //}
+        //private void OnRadiusChange(WristButtons.WristButton b, bool left) // WristButtons?
+        //{
+        //    if(left) SetRadius(m_hCfgRadius.Value - 0.05f);
+        //    else SetRadius(m_hCfgRadius.Value + 0.05f);
+        //    b.SetText("GOOMPS Radius:\n" + m_hCfgRadius.Value);
+        //}
         /* Wrist Buttons Part End */
         void Awake()
         {

@@ -18,3 +18,5 @@ If your BepInEx copy installed then copy-paste GOOMPS.dll to your Gorilla Tag/Be
 You can found a config at this path: `Gorilla Tag/BepInEx/config/GOOMPS.cfg`
 
 Just open it and you'll see everything you need.
+
+### <i>This product is not affiliated with Gorilla Tag or Another Axiom LLC and is not endorsed or otherwise sponsored by Another Axiom LLC. Portions of the materials contained herein are property of Another Axiom LLC. © 2024 Another Axiom LLC.</i>
